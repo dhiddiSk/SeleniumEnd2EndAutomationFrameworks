@@ -2,7 +2,6 @@ package SeleniumFramework.end2endFramework;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -77,11 +76,11 @@ public class TopDeals {
 			deals[2] = "0";
 		}
 
-		if (!price && DiscountPrice) {
+		else if (!price && DiscountPrice) {
 			deals[1] = "0";
 		}
 
-		if (!price && !DiscountPrice) {
+		else if (!price && !DiscountPrice) {
 			deals[1] = "0";
 			deals[2] = "0";
 		}

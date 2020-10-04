@@ -7,7 +7,14 @@ import org.openqa.selenium.*;
 
 public class HomePage {
 	private static WebDriver driver;
-
+	
+	
+	public HomePage() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
 	HomePage(WebDriver driver) {
 
 		this.driver = driver;
