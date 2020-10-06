@@ -5,9 +5,9 @@
 </Properties>
  
   <Appenders>
-      <!--  <RollingFile name="File" fileName="${basePath}/prints.log" filePattern="${basePath}/prints-%d{yyyy-MM-dd}.log"> -->
+     <RollingFile name="File" fileName="${basePath}/prints.log" filePattern="${basePath}/prints-%d{yyyy-MM-dd}.log"> 
       
-      <RollingFile name="File" fileName="/home/saikrishna/Practical/selenium/endToendFramework2/prints.log" filePattern="/home/saikrishna/Practical/selenium/endToendFramework2/prints-%d{yyyy-MM-dd}.log">
+      <!--   <RollingFile name="File" fileName="/home/saikrishna/Practical/selenium/endToendFramework2/prints.log" filePattern="/home/saikrishna/Practical/selenium/endToendFramework2/prints-%d{yyyy-MM-dd}.log">-->
      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
       <SizeBasedTriggeringPolicy size="500" />
           </RollingFile>

@@ -1,6 +1,9 @@
-package SeleniumFramework.end2endFramework;
+package seleniumFramework;
 
 import org.testng.annotations.Test;
+
+import seleniumFramework.CheckOutTwo;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -17,7 +20,7 @@ import org.testng.annotations.Test;
 public class CheckOutTwoTest {
 
 	Properties props = new Properties();
-	private String propertiesFilesLocation = "/home/saikrishna/Practical/selenium/SeleniumAutomationEndToEnd/end2endFramework/data.properties";
+	private String propertiesFilesLocation = "/home/saikrishna/Practical/selenium/SeleniumAutomationEndToEnd/end2endFramework/src/main/java/resources/centralData.properties";
 
 	WebDriver driver;
 	CheckOutTwo checkOutTwo;

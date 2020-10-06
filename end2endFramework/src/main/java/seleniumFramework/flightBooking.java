@@ -1,4 +1,4 @@
-package SeleniumFramework.end2endFramework;
+package seleniumFramework;
 
 import org.openqa.selenium.WebDriver;
 

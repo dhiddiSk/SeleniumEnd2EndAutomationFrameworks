@@ -1,8 +1,10 @@
-package SeleniumFramework.end2endFramework;
+package seleniumFramework;
 
 import org.testng.annotations.Test;
 
 import com.beust.jcommander.Parameter;
+
+import seleniumFramework.CheckOut;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,7 +27,7 @@ import org.testng.annotations.Test;
 public class CheckOutTest {
 
 	Properties props = new Properties();
-	private String propertiesFilesLocation = "/home/saikrishna/Practical/selenium/SeleniumAutomationEndToEnd/end2endFramework/centralData.properties";
+	private String propertiesFilesLocation = "/home/saikrishna/Practical/selenium/SeleniumAutomationEndToEnd/end2endFramework/src/main/java/resources/centralData.properties";
 
 	//private static Logger log;
 	

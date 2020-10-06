@@ -1,4 +1,4 @@
-package SeleniumFramework.end2endFramework;
+package seleniumFramework;
 
 import java.util.List;
 import java.util.stream.Collectors;

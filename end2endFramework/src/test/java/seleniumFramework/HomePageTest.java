@@ -1,4 +1,4 @@
-package SeleniumFramework.end2endFramework;
+package seleniumFramework;
 
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
@@ -22,14 +22,16 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import SeleniumFramework.end2endFramework.HomePage;
-import net.bytebuddy.implementation.bind.annotation.Super;
 
-public class HomePageTest extends Configuration {
+import net.bytebuddy.implementation.bind.annotation.Super;
+import resources.Configurations;
+import seleniumFramework.HomePage;
+
+public class HomePageTest extends Configurations {
 	WebDriver driver;
 	HomePage homeObject;
 	Properties props = new Properties();
-	String location = "/home/saikrishna/Practical/selenium/SeleniumAutomationEndToEnd/end2endFramework/centralData.properties";
+	String location = "/home/saikrishna/Practical/selenium/SeleniumAutomationEndToEnd/end2endFramework/src/main/java/resources/centralData.properties";
 	
 	public static Logger log = LogManager.getLogger(HomePageTest.class.getName());
 	
@@ -38,10 +40,13 @@ public class HomePageTest extends Configuration {
 		
 		FileInputStream fileInputStream = new FileInputStream(location);
 		props.load(fileInputStream);
+		
         
-		System.out.println(location);
+		//System.out.println(location);
 		
 		this.driver = super.settingTestProperties(driver, location, props);
+		
+		log.info("Driver is initialized");
 	}
 
 	@Test
@@ -53,17 +58,10 @@ public class HomePageTest extends Configuration {
 		
 		homeObject = new HomePage(driver);
 
-		homeObject.addVegetables("Brocolli", 5);
+		homeObject.addVegetables("Brocolli", 6);
 
 		AssertJUnit.assertEquals(600, homeObject.totalPrice());
 
-		log.info("Sucessfully validated the price computation");
-		log.info("Sucessfully validated the price computation");
-		log.info("Sucessfully validated the price computation");
-		log.info("Sucessfully validated the price computation");
-		log.info("Sucessfully validated the price computation");
-		log.info("Sucessfully validated the price computation");
-		log.info("Sucessfully validated the price computation");
 		log.info("Sucessfully validated the price computation");
 		
 //		driver.findElement(By.cssSelector("[alt='Cart']")).click();
@@ -75,6 +73,11 @@ public class HomePageTest extends Configuration {
 //		String latestUrl = driver.getCurrentUrl();
 		
 //		props.replace("cartUrl", props.getProperty("cartUrl"), latestUrl);
+		
+		//Assert.assertTrue(false);
+		
+		
+		
 	}
 	
 	

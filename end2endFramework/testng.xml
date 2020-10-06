@@ -4,9 +4,13 @@
 
 <parameter name="promocode" value="rahulshettyacademy"/>
 
-  <test thread-count="5" name="Test">
+<listeners>
+<listener class-name="seleniumFramework.Listeners"/>
+</listeners>
+
+  <test name="Test">
     <classes>
-      <class name="SeleniumFramework.end2endFramework.HomePageTest"/>
+      <class name="seleniumFramework.HomePageTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
