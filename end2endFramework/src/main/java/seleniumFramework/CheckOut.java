@@ -4,17 +4,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class CheckOut extends HomePage{
+public class CheckOut extends VegEcomHomePage{
 	
-//	 WebDriver driver;
-//	
-//	public CheckOut(WebDriver driver) {
-//		
-//		this.driver = driver;
-//		
-//		System.out.println(driver.getCurrentUrl());
-//		
-//	}
+	private static WebDriver driver;
+	
+	public CheckOut(WebDriver driver) {
+		
+		this.driver = driver;
+		
+		System.out.println(driver.getCurrentUrl());
+		
+	}
 	
 	public CheckOut() {
 		// TODO Auto-generated constructor stub
@@ -38,6 +38,14 @@ public class CheckOut extends HomePage{
 	By placeOrder() {
 		return By.xpath("//div[@class='products']/div/button");
 	}	
+	
+	By discount() {
+		
+	return (By.className("discountPerc"));
+	
+	}
+	
+	
 	
 	
 }

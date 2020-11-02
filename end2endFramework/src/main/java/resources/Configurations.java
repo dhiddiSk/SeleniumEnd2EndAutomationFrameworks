@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 import org.apache.commons.io.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +17,8 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class Configurations {
 
+	private static Logger log = LogManager.getLogger(Configurations.class.getName());
+	
 	public WebDriver settingTestProperties(WebDriver driver, String location, Properties props) throws IOException {
 
 		if (props.getProperty("browser").equals("chrome")) {
@@ -42,6 +46,12 @@ public class Configurations {
 		}
 
 		// System.out.println(props.getProperty("homeUrl"));
+		
+		else {
+			log.error("Please use valid property value" , driver);		
+		}
+		
+		
 
 		return driver;
 
@@ -74,10 +84,7 @@ public class Configurations {
 			
 		return extent;
 		
-		
-		
-		
-		
+		 
 	}
 	
 	
