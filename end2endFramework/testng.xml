@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Suite">
-
-<parameter name="promocode" value="rahulshettyacademy"/>
-
+<suite name="OnlineSites">
 <listeners>
 <listener class-name="seleniumFramework.Listeners"/>
 </listeners>
 
-  <test name="Test">
+  <test name="VegetableShopping">
+  <parameter name="promocode" value="rahulshettyacademy"/>
+  
     <classes>
-      <class name="seleniumFramework.HomePageTest"/>
+      <class name="seleniumFramework.VegEcomHomePageTest"/>
     </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+  </test>
+</suite>

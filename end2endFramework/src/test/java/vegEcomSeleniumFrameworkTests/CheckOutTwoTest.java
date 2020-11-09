@@ -1,39 +1,29 @@
-package seleniumFramework;
+package vegEcomSeleniumFrameworkTests;
 
 import org.testng.annotations.Test;
 
-import com.beust.jcommander.Parameter;
-
-import seleniumFramework.CheckOut;
+import vegEcomSeleniumFramework.CheckOutTwo;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class CheckOutTest {
+public class CheckOutTwoTest {
 
 	Properties props = new Properties();
 	private String propertiesFilesLocation = "/home/saikrishna/Practical/selenium/SeleniumAutomationEndToEnd/end2endFramework/src/main/java/resources/centralData.properties";
 
-	//private static Logger log;
-	
 	WebDriver driver;
-	CheckOut checkOut;
-	WebDriverWait w;
+	CheckOutTwo checkOutTwo;
 
 //	@BeforeTest()
 //	public void settingTestProperties() throws IOException {
@@ -64,49 +54,40 @@ public class CheckOutTest {
 //			System.setProperty("webdriver.ie.driver", props.getProperty("driverLocation"));
 //
 //		}
-//		
-//		w = new WebDriverWait(driver, 5);
-//		
-//		//log = LogManager.getLogger(CheckOutTest.class);
-//
 //	}
+//	
 	
-	@Parameters({"promocode"})
-	@Test(timeOut = 10000)
-	public void cartTest(String code) {
+	@Test(timeOut = 4000)
+	public void proceedTest() {
 		
-		driver.get(props.getProperty("cartUrl"));
+		driver.get(props.getProperty("cartTwoUrl"));
 		
-		System.out.println(props.getProperty("cartUrl"));
+		checkOutTwo = new CheckOutTwo(driver);
 		
-		//checkOut = new CheckOut(driver);
+		checkOutTwo.dropDown("Germany");
 		
-		checkOut = new CheckOut();
+		driver.findElement(checkOutTwo.termsAgreement()).click();
 		
-		w.until(ExpectedConditions.visibilityOfElementLocated(By.className("promoCode")));
+		driver.findElement(checkOutTwo.proceedButton()).click();
 		
-		driver.findElement(checkOut.promoCode()).sendKeys(code);
 		
-		driver.findElement(checkOut.applyPromoCode()).click();
 		
-		String style = driver.findElement(checkOut.verifyPromoApplicabilty()).getAttribute("style");
 		
-		if(style.contains("red")){
-			
-			String errorMessage = "The entered promoCode is invalid, please retry with correct one's";
-			
-		//	log.error(errorMessage);
-			
-			Assert.assertTrue(false);	
-			
-		}		
 		
-//		driver.findElement(checkOut.placeOrder()).click();
-//		
-//		String latestUrl = driver.getCurrentUrl();
-//		
-//		props.setProperty("cartTwoUrl", latestUrl);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 }

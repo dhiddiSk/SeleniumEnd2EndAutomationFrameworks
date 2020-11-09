@@ -1,4 +1,4 @@
-package seleniumFramework;
+package vegEcomSeleniumFrameworkTests;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
 import resources.Configurations;
-
+//ITestListeners interface which implements Testng listeners
 public class Listeners extends Configurations implements ITestListener {
 	
 	ExtentReports extentObject = Configurations.getReportObject();
@@ -34,13 +34,14 @@ public class Listeners extends Configurations implements ITestListener {
 	public void onTestSuccess(ITestResult result) {
 		// TODO Auto-generated method stub
 		extentTest.get().log(Status.PASS, "Test got succeeded");
-		
-
-	}
+		}
 	
 	@Override
 	public void onTestFailure(ITestResult result) {
 		// TODO Auto-generated method stub
+		
+		System.out.println("The test case"+result.getName()+"got failed");
+		
 		extentTest.get().fail(result.getThrowable());
 		
 		WebDriver driver = null;

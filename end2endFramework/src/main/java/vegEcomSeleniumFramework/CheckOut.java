@@ -1,51 +1,47 @@
-package seleniumFramework;
+package vegEcomSeleniumFramework;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class CheckOut extends VegEcomHomePage{
-	
+public class CheckOut extends VegEcomHomePage {
+
 	private static WebDriver driver;
-	
+
 	public CheckOut(WebDriver driver) {
-		
+
 		this.driver = driver;
-		
+
 		System.out.println(driver.getCurrentUrl());
-		
+
 	}
-	
+
 	public CheckOut() {
 		// TODO Auto-generated constructor stub
 	}
 
-	By promoCode(){
-		return By.className("promoCode");//("[class = 'promoCode']");
+	public By promoCode() {
+		return By.className("promoCode");// ("[class = 'promoCode']");
 	}
-	
-	By applyPromoCode() {
+
+	public By applyPromoCode() {
 		return By.cssSelector("[class='promoBtn']");
 	}
-	
-	
-	By verifyPromoApplicabilty() {
-		
+
+	public By verifyPromoApplicabilty() {
+
 		return By.xpath("//div[@class='products']/div[2]/div[1]/span");
-		
+
 	}
-	
-	By placeOrder() {
+
+	public By placeOrder() {
 		return By.xpath("//div[@class='products']/div/button");
-	}	
-	
-	By discount() {
-		
-	return (By.className("discountPerc"));
-	
 	}
-	
-	
-	
-	
+
+	public By discount() {
+
+		return (By.className("discountPerc"));
+
+	}
+
 }
