@@ -1,0 +1,5 @@
+15:42:06.728 [main] INFO  seleniumFramework.VegEcomHomePageTest - Driver is initialized
+15:42:16.669 [main] INFO  seleniumFramework.VegEcomHomePageTest - Sucessfully validated the price and cost computations of ordered Items
+15:45:52.602 [main] INFO  seleniumFramework.VegEcomHomePageTest - Driver is initialized
+15:45:58.648 [main] INFO  seleniumFramework.VegEcomHomePageTest - Sucessfully validated the price and cost computations of ordered Items
+15:48:45.700 [main] INFO  seleniumFramework.VegEcomHomePageTest - Driver is initialized

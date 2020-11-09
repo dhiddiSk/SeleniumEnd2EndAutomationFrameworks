@@ -1,0 +1,4 @@
+18:52:27.503 [main] DEBUG seleniumFramework.VegEcomHomePageTest - mismatch between vegetables selected and the total price
+18:52:28.146 [main] INFO  seleniumFramework.VegEcomHomePageTest - Sucessfully validated the price and cost computations of ordered Items
+18:53:49.044 [main] INFO  seleniumFramework.VegEcomHomePageTest - Driver is initialized with respect to the given browser
+18:53:54.560 [main] DEBUG seleniumFramework.VegEcomHomePageTest - mismatch between vegetables selected and the total price
