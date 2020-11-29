@@ -41,7 +41,7 @@ public class VegEcomHomePageTest extends Configurations {
 
 		FileInputStream fileInputStream = new FileInputStream(location);
 		props.load(fileInputStream);
-		this.driver = super.settingTestProperties(driver, location, props);
+		this.driver = super.settingTestProperties(driver, props);
 		log.info("Driver is initialized with respect to the given browser");
 	}
 

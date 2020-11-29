@@ -19,7 +19,7 @@ public class Configurations {
 
 	private static Logger log = LogManager.getLogger(Configurations.class.getName());
 	
-	public WebDriver settingTestProperties(WebDriver driver, String location, Properties props) throws IOException {
+	public WebDriver settingTestProperties(WebDriver driver, Properties props) throws IOException {
 
 		if (props.getProperty("browser").equals("chrome")) {
 
@@ -50,7 +50,6 @@ public class Configurations {
 		else {
 			log.error("Please use valid property value" , driver);		
 		}
-		
 		
 
 		return driver;

@@ -1,4 +1,4 @@
-package seleniumFramework;
+package flightBookingSeleniumFramework;
 
 import org.openqa.selenium.WebDriver;
 
