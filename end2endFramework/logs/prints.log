@@ -1,4 +1,1 @@
-18:53:54.601 [main] DEBUG seleniumFramework.VegEcomHomePageTest - mismatch between items selected and the total items in the cart
-18:53:55.398 [main] DEBUG seleniumFramework.VegEcomHomePageTest - mismatch between items selected and the total items in the cart
-18:53:55.424 [main] DEBUG seleniumFramework.VegEcomHomePageTest - mismatch between vegetables selected and the total price
-18:53:56.032 [main] INFO  seleniumFramework.VegEcomHomePageTest - Sucessfully validated the price and cost computations of ordered Items
+19:55:32.058 [main] INFO  vegEcomSeleniumFrameworkTests.VegEcomHomePageTest - TopDeals Driver is initialized with respect to the given browser

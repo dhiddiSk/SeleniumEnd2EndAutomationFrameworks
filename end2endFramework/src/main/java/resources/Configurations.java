@@ -17,7 +17,7 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class Configurations {
 
-	private static Logger log = LogManager.getLogger(Configurations.class.getName());
+	private static Logger logger = LogManager.getLogger(Configurations.class.getName());
 	
 	public WebDriver settingTestProperties(WebDriver driver, Properties props) throws IOException {
 
@@ -48,7 +48,7 @@ public class Configurations {
 		// System.out.println(props.getProperty("homeUrl"));
 		
 		else {
-			log.error("Please use valid property value" , driver);		
+			logger.error("Please use valid property value" , driver);		
 		}
 		
 
