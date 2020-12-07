@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="OnlineSites">
-<listeners>
-<listener class-name="seleniumFramework.Listeners"/>
-</listeners>
-
-  <test name="VegetableShopping">
-  <parameter name="promocode" value="rahulshettyacademy"/>
-  
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="VegEcommerce">
     <classes>
-      <class name="seleniumFramework.VegEcomHomePageTest"/>
+      <class name="vegEcomSeleniumFrameworkTests.CheckOutTwoTest"/>
+      <class name="vegEcomSeleniumFrameworkTests.TopDealsTest"/>
+      <class name="vegEcomSeleniumFrameworkTests.CheckOutTest">
+         
+      
+      <!--<methods>
+      
+      // The below declaration explains how one can control the execution of test cases by including only particular methods. One can also use the regular expressions.
+      <include name= "abc.*"/>
+      
+      
+      </methods>-->
+      </class>
+      
+      
+      <class name="vegEcomSeleniumFrameworkTests.VegEcomHomePageTest">
+      
+      <!--<methods>
+      
+      <exclude name= "xyz"/>
+      
+      
+      </methods>-->
+      
+      
+      
+      </class>
     </classes>
-  </test>
-</suite>
+  </test> 
+  
+</suite> <!-- Suite -->

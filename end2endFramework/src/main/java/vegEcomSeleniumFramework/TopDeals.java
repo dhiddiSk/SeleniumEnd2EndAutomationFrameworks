@@ -14,42 +14,42 @@ public class TopDeals {
 	}
 
 	// @method "nextPageButton" returns the web element of next button
-	public WebElement nextPageButton() {
+	public WebElement vegTopDeals_nextPageButton() {
 		return driver.findElement(By.cssSelector("a[aria-label='Next']"));
 	}
 
 	// @method switchToPreviousPages returns the web element of the previous button
-	public WebElement previousPageButton() {
+	public WebElement vegTopDeals_previousPageButton() {
 		return driver.findElement(By.cssSelector("//a[contains(@aria-label,'Previous')]"));
 	}
 
 	// @method searchBox returns the web element of the search box
-	public WebElement searchBox() {
+	public WebElement vegTopDeals_searchBox() {
 		return driver.findElement(By.id("search-file"));
 	}
 
 	// @method setPageSize returns the web element of it.
-	public WebElement setPageSize() {
+	public WebElement vegTopDeals_setPageSize() {
 		return driver.findElement(By.id("page-menu"));
 	}
 
 	// @method vegOrFruitNameSortButton returns the web element of the sorting button
-	public WebElement vegOrFruitNameSortButton() {
+	public WebElement vegTopDeals_vegOrFruitNameSortButton() {
 		return driver.findElement(By.xpath("//div[@class='container']/table/thead/tr/th[1]/span[2]"));
 	}
 
 	// @method "vegItems" returns the web element from which one can collect the list of vegetables
-	public By vegItems() {
+	public By vegTopDeals_vegItems() {
 		return By.xpath("//div[@class='container']/table/tbody/tr/td[1]");
 	}
 
 	// @method "getTheDiscountPriceValue" returns the web element of the discounted price values
-	public WebElement getTheDiscountPriceValue() {
+	public WebElement vegTopDeals_getTheDiscountPriceValue() {
 		return driver.findElement(By.xpath("following-sibling::td[2]"));
 	}
 
 	// @method "getThePriceValue" returns the web element of the actual price value
-	public WebElement getThePriceValue() {
+	public WebElement vegTopDeals_getThePriceValue() {
 		return driver.findElement(By.xpath("following-sibling::td[1]"));
 	}
 
