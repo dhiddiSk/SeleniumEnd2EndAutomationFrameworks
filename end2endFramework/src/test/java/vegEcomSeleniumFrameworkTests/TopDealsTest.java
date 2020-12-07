@@ -1,5 +1,7 @@
 package vegEcomSeleniumFrameworkTests;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
@@ -9,9 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 import resources.Configurations;
 import vegEcomSeleniumFramework.TopDeals;
 
@@ -25,7 +25,7 @@ public class TopDealsTest extends Configurations {
 	private static final Logger logger = LogManager.getLogger(TopDealsTest.class.getName());
 
 	@BeforeTest()
-	public void settingsBeforeTest() throws IOException {
+	public void vegTopDeals_SettingsBeforeTest() throws IOException {
 
 		FileInputStream fileInputStream = new FileInputStream(location);
 		props.load(fileInputStream);
@@ -36,7 +36,7 @@ public class TopDealsTest extends Configurations {
 	}
 
 	@Test
-	public void checkProductsPrice() {
+	public void vegTopDeals_CheckProductsPriceTest() {
 
 		// @List productPriceList stores the list of product prices
 
@@ -54,7 +54,7 @@ public class TopDealsTest extends Configurations {
 
 		List<String> productPriceList;
 
-		vegItems = driver.findElements(topdeal.vegItems());
+		vegItems = driver.findElements(topdeal.vegTopDeals_vegItems());
 
 		// Logging, if vegItems are not available
 
@@ -62,7 +62,7 @@ public class TopDealsTest extends Configurations {
 
 			logger.debug("The vegItems web elements are not available");
 
-			Assert.assertTrue(false);
+			AssertJUnit.assertTrue(false);
 
 		}
 
@@ -85,15 +85,15 @@ public class TopDealsTest extends Configurations {
 				 * 
 				 */
 				productPriceList = vegItems.stream().filter(s -> s.getText().contains(products[0]))
-						.map(s -> productPriceValue()).collect(Collectors.toList());
+						.map(s -> vegTopDeals_ProductPriceValue()).collect(Collectors.toList());
 				if (productPriceList.size() < 1) {
 					// Clicked to the next page when the product is not present in the current page
 					// or if the productPriceList.size() < 1
-					topdeal.nextPageButton().click();
+					topdeal.vegTopDeals_nextPageButton().click();
 				}
 			} while ((productPriceList.size() < 1));
 
-			Assert.assertTrue(productPriceList.get(0).equals("37"));
+			AssertJUnit.assertTrue(productPriceList.get(0).equals("37"));
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -102,9 +102,9 @@ public class TopDealsTest extends Configurations {
 
 	}
 
-	private String productPriceValue() {
+	private String vegTopDeals_ProductPriceValue() {
 
-		String priceValue = topdeal.getThePriceValue().getText();
+		String priceValue = topdeal.vegTopDeals_getThePriceValue().getText();
 
 		if (priceValue == null) {
 
@@ -116,7 +116,7 @@ public class TopDealsTest extends Configurations {
 	}
 
 	@Test()
-	public void checkDiscountedPrice() {
+	public void vegTopDeals_CheckDiscountedPriceTest() {
 
 		List<String> productDiscountedPriceList;
 
@@ -125,23 +125,23 @@ public class TopDealsTest extends Configurations {
 
 			logger.debug("The vegItems web elements are not available");
 
-			Assert.assertTrue(false);
+			AssertJUnit.assertTrue(false);
 
 		}
 		
 		try {
 			do {
 				productDiscountedPriceList = vegItems.stream().filter(s -> s.getText().contains(products[0]))
-						.map(s -> discountedProductPriceValue()).collect(Collectors.toList());
+						.map(s -> vegTopDeals_DiscountedProductPriceValue()).collect(Collectors.toList());
 				if (productDiscountedPriceList.size() < 1) {
 					// Clicked to the next page when the product is not present in the current page
 					// or if the productPriceList.size() < 1
-					topdeal.nextPageButton().click();
+					topdeal.vegTopDeals_nextPageButton().click();
 				}
 
 			} while ((productDiscountedPriceList.size() < 1));
 
-			Assert.assertTrue(productDiscountedPriceList.get(0).equals("26"));
+			AssertJUnit.assertTrue(productDiscountedPriceList.get(0).equals("26"));
 
 		}
 
@@ -152,10 +152,10 @@ public class TopDealsTest extends Configurations {
 
 	}
 
-	private String discountedProductPriceValue() {
+	private String vegTopDeals_DiscountedProductPriceValue() {
 		
 		
-		String discountedPriceValue = topdeal.getThePriceValue().getText();
+		String discountedPriceValue = topdeal.vegTopDeals_getThePriceValue().getText();
 
 		if (discountedPriceValue == null) {
 
@@ -169,27 +169,27 @@ public class TopDealsTest extends Configurations {
 	// Validate the products display by passing text in the search box and check if
 	// all the related products are been displayed
 	@Test
-	public void validateTheSearch() {
+	public void vegTopDeals_ValidateTheSearchTest() {
 
 		try {
 
 			// Increase the page size, before passing the character sequences in the search
 			// box.
-			Select select = new Select(topdeal.setPageSize());
+			Select select = new Select(topdeal.vegTopDeals_setPageSize());
 			select.selectByValue("20");
-			topdeal.searchBox().sendKeys("b");
+			topdeal.vegTopDeals_searchBox().sendKeys("b");
 
 			// Now validate the display of the products
 
-			vegItems = driver.findElements(topdeal.vegItems());
+			vegItems = driver.findElements(topdeal.vegTopDeals_vegItems());
 
 			List<String> vegies;
 
 			vegies = vegItems.stream().map(x -> x.getText()).collect(Collectors.toList());
 
-			Assert.assertTrue(vegies.contains("Brinjal"), "The products are displaying as expected");
+			AssertJUnit.assertTrue("The products are displaying as expected", vegies.contains("Brinjal"));
 
-			Assert.assertFalse(vegies.contains("Rice"));
+			AssertJUnit.assertFalse(vegies.contains("Rice"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -197,20 +197,18 @@ public class TopDealsTest extends Configurations {
 	}
 
 	@Test
-	public void sortTheProductsAlphabeticallyBased() {
-
-		TopDeals deals = new TopDeals(driver);
+	public void vegTopDeals_SortTheProductsAlphabeticallyTest() {
 
 		// Get all the displayed vegetable or fruit names into a list
 
 		boolean itemsSorted = true;
 
 		try {
-			deals.vegOrFruitNameSortButton().click();
+			topdeal.vegTopDeals_vegOrFruitNameSortButton().click();
 
 			List<String> itemsListAfterSorting;
 
-			vegItems = driver.findElements(topdeal.vegItems());
+			vegItems = driver.findElements(topdeal.vegTopDeals_vegItems());
 
 			itemsListAfterSorting = vegItems.stream().map(x -> x.getText()).collect(Collectors.toList());
 
@@ -232,7 +230,7 @@ public class TopDealsTest extends Configurations {
 			}
 
 			// If the below assertion fails, then the items are not sorted
-			Assert.assertEquals(true, itemsSorted);
+			AssertJUnit.assertEquals(true, itemsSorted);
 
 		} catch (Exception e) {
 			// TODO: handle exception
