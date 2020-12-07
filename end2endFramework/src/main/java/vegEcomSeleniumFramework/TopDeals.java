@@ -6,7 +6,8 @@ import org.openqa.selenium.WebElement;
 
 public class TopDeals {
 
-	public WebDriver driver;
+	private WebDriver driver;
+
 
 	public TopDeals(WebDriver driver) {
 

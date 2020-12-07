@@ -32,7 +32,7 @@ public class TopDealsTest extends Configurations {
 		this.driver = super.settingTestProperties(driver, props);
 		logger.info("TopDeals modules web driver has been initialized");
 
-		logger.debug("The web driver has been initialized with web browser " + props.getProperty("browser"));
+		logger.debug("The TopDealsTest web driver has been initialized with web browser " + props.getProperty("browser"));
 	}
 
 	@Test
