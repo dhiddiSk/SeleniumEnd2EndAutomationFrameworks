@@ -1,10 +1,6 @@
 package vegEcomSeleniumFrameworkTests;
 
 import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.testng.Assert;
 import java.io.FileInputStream;
@@ -64,21 +60,21 @@ public class VegEcomHomePageTest extends Configurations {
 
 		vegEcomHomeObject.addVegetablesToCart("Brocolli", 6);
 
-		AssertJUnit.assertEquals(720, vegEcomHomeObject.totalPrice());
+		Assert.assertEquals(720, vegEcomHomeObject.totalPrice());
 		log.debug("mismatch between vegetables selected and the total price");
 
-		AssertJUnit.assertEquals(1, vegEcomHomeObject.totalItems());
+		Assert.assertEquals(1, vegEcomHomeObject.totalItems());
 		log.debug("mismatch between items selected and the total items in the cart");
 
 		vegEcomHomeObject.addVegetablesToCart("Cucumber", 5);
 
-		AssertJUnit.assertEquals(2, vegEcomHomeObject.totalItems());
+		Assert.assertEquals(2, vegEcomHomeObject.totalItems());
 		log.debug("mismatch between items selected and the total items in the cart");
-		AssertJUnit.assertTrue(vegEcomHomeObject.totalPrice() > 800);
+		Assert.assertTrue(vegEcomHomeObject.totalPrice() > 800);
 		log.debug("mismatch between vegetables selected and the total price");
 
 		vegEcomHomeObject.addVegetablesToCart("Brinjal", 2);
-		AssertJUnit.assertEquals(3, vegEcomHomeObject.totalItems());
+		Assert.assertEquals(3, vegEcomHomeObject.totalItems());
 
 		log.info("Validated the price and cost computations of ordered Items");
 
@@ -95,7 +91,7 @@ public class VegEcomHomePageTest extends Configurations {
 
 		}
 
-		AssertJUnit.assertEquals(vegEcomHomeObject.totalItems(), 1);
+		Assert.assertEquals(vegEcomHomeObject.totalItems(), 1);
 	}
 
 	@Parameters({ "promocode" })
@@ -170,8 +166,8 @@ public class VegEcomHomePageTest extends Configurations {
 
 		List<String> displayedProducts = vegEcomHomeObject.searchVegetablesByLetters("br", props);
 
-		AssertJUnit.assertTrue("The search results display brocolli", displayedProducts.contains("Brocolli"));
-		AssertJUnit.assertTrue(" The search results display brinjal", displayedProducts.contains("Brinjal"));
+		softAssert.assertTrue(displayedProducts.contains("Brocolli"), "The search results display brocolli");
+		softAssert.assertTrue(displayedProducts.contains("Brinjal"), " The search results display brinjal");
 
 		log.debug("Search bar is not displaying all the expected products for given key charachters");
 
