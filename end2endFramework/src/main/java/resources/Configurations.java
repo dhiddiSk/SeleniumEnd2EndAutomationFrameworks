@@ -12,6 +12,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
 import com.aventstack.extentreports.*;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
@@ -32,8 +34,8 @@ public class Configurations {
 		else if (props.getProperty("browser").equals("mozilla")) {
 
 			driver = new FirefoxDriver();
-
-			System.setProperty("webdriver.gecko.driver", props.getProperty("driverLocation"));
+			
+			System.setProperty("webdriver.gecko.driver", props.getProperty("mozillaDriverLocation"));
 
 		}
 

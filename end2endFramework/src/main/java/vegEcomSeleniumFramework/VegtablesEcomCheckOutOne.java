@@ -1,22 +1,10 @@
 package vegEcomSeleniumFramework;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-public class CheckOut extends VegEcomHomePage {
+public class VegtablesEcomCheckOutOne extends VegEcomHomePage {
 
-	private static WebDriver driver;
-
-	public CheckOut(WebDriver driver) {
-
-		this.driver = driver;
-
-		System.out.println(driver.getCurrentUrl());
-
-	}
-
-	public CheckOut() {
+	public VegtablesEcomCheckOutOne() {
 		// TODO Auto-generated constructor stub
 	}
 

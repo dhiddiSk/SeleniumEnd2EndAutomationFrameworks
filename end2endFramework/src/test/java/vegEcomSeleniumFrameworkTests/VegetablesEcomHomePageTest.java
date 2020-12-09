@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -20,22 +19,19 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import resources.Configurations;
-import vegEcomSeleniumFramework.CheckOut;
-import vegEcomSeleniumFramework.CheckOutTwo;
-import vegEcomSeleniumFramework.VegEcomHomePage;
+import vegEcomSeleniumFramework.VegtablesEcomCheckOutOne;
 import vegEcomSeleniumFramework.VegetablesEcomHomePage;
 
 public class VegetablesEcomHomePageTest extends Configurations {
-	
+
 	WebDriver driver;
 	VegetablesEcomHomePage vegEcomHomeObject;
-	CheckOut checkOutObject;
-	CheckOutTwo checkOutTwoObject;
+	VegtablesEcomCheckOutOne checkOutObject;
 	WebDriverWait w;
 	Properties props = new Properties();
 	String location = "/home/saikrishna/Practical/selenium/SeleniumAutomationEndToEnd/end2endFramework/src/main/java/resources/centralData.properties";
+	String currentUrl;
 	private static Logger logger = LogManager.getLogger(VegetablesEcomHomePageTest.class.getName());
 
 	@BeforeTest()
@@ -43,24 +39,33 @@ public class VegetablesEcomHomePageTest extends Configurations {
 		FileInputStream fileInputStream = new FileInputStream(location);
 		props.load(fileInputStream);
 		this.driver = super.settingTestProperties(driver, props);
-		logger.info("VegetablesEcomHomePageTest webDriver is initialized with respect to the given browser");
+		logger.info("VegetablesEcomHomePageTest webDriver is initialized with respect to the given browser"
+				+ props.getProperty("browser"));
 	}
-	
+
+	/*
+	 * This test is to add the vegetables to the cart and test if the total price
+	 * and quantities are correct.
+	 */
 	@Test
 	public void vegetablesEcomHomePage_orderVegetablesTest() {
 		driver.get(props.getProperty("homeUrl"));
+		
+		currentUrl = driver.getCurrentUrl();
 
 		driver.manage().window().maximize();
-		
+
 		vegEcomHomeObject = new VegetablesEcomHomePage(driver);
-		
+
 		addVegetablesToCart("Brocolli", 6);
-		
+
 		AssertJUnit.assertEquals(720, vegEcomHomeObject.vegetablesEcomHomePage_totalPrice());
-		logger.debug("mismatch between vegetables selected and the total price");
+		logger.debug("The mismatch between the items selected and the total price "
+				+ vegEcomHomeObject.vegetablesEcomHomePage_totalPrice());
 
 		AssertJUnit.assertEquals(1, vegEcomHomeObject.vegetablesEcomHomePage_totalItems());
-		logger.debug("mismatch between items selected and the total items in the cart");
+		logger.debug("The mismatch between the items selected and the total items in the cart "
+				+ vegEcomHomeObject.vegetablesEcomHomePage_totalItems());
 
 		addVegetablesToCart("Cucumber", 5);
 
@@ -74,17 +79,18 @@ public class VegetablesEcomHomePageTest extends Configurations {
 
 		logger.info("Validated the price and cost computations of ordered Items");
 
-
 	}
-	
-	private void addVegetablesToCart(String vegetableName, int quantity ) throws IllegalArgumentException, NullPointerException{
+
+	private void addVegetablesToCart(String vegetableName, int quantity)
+			throws IllegalArgumentException, NullPointerException {
 		// TODO Auto-generated method stub
 		try {
-			
-			List<WebElement> buttons = driver.findElements(vegEcomHomeObject.vegetablesEcomHomePage_productActionButtons());
+
+			List<WebElement> buttons = driver
+					.findElements(vegEcomHomeObject.vegetablesEcomHomePage_productActionButtons());
 
 			List<WebElement> items = driver.findElements(vegEcomHomeObject.vegEcomHomePage_productNames());
-					
+
 			String[] vegetableNames;
 
 			for (int i = 0; i < items.size(); i++) {
@@ -108,9 +114,11 @@ public class VegetablesEcomHomePageTest extends Configurations {
 		}
 	}
 
+	// This test is to validate if the total number of vegetables have been changed
+	// after removing the unwanted vegetables.
 	@Test(dependsOnMethods = { "orderVegetablesTest" })
-	public void vegetablesEcomHomePage_removeVegetablesTest() throws InterruptedException {
-		
+	public void vegetablesEcomHomePage_removeVegetablesFromCartTest() throws InterruptedException {
+
 		List<String> xpathforRemoveingElements = removeVegetableItems("Brocolli", "Brinjal");
 
 		for (String string : xpathforRemoveingElements) {
@@ -120,9 +128,9 @@ public class VegetablesEcomHomePageTest extends Configurations {
 		}
 
 		AssertJUnit.assertEquals(vegEcomHomeObject.vegetablesEcomHomePage_totalItems(), 1);
-		
+
 	}
-	
+
 	private List<String> removeVegetableItems(String... strings) throws InterruptedException {
 		// TODO Auto-generated method stub
 		if (strings.length <= 0) {
@@ -133,7 +141,7 @@ public class VegetablesEcomHomePageTest extends Configurations {
 			// to verify with the given strings(items) to be removed.
 
 			driver.findElement(vegEcomHomeObject.vegetablesEcomHomePage_basketElement()).click();
-					
+
 			Thread.sleep(2000);
 
 			if (driver.findElement(vegEcomHomeObject.cartItems()).isDisplayed()) {
@@ -202,13 +210,12 @@ public class VegetablesEcomHomePageTest extends Configurations {
 			}
 		}
 	}
-	
-	public void vegetablesEcomHomePage_validateSearchProductsTest() {
 
-		/*
-		 * This is to search vegetables in the search bar and then verify if the desired
-		 * products have been displayed
-		 */
+	/*
+	 * This is to search vegetables in the search bar and then verify if the desired
+	 * products have been displayed
+	 */
+	public void vegetablesEcomHomePage_validateSearchProductsTest() {
 
 		driver.get(props.getProperty("homeUrl"));
 
@@ -227,9 +234,8 @@ public class VegetablesEcomHomePageTest extends Configurations {
 
 		logger.info("All the expected products are displayed");
 
-	
-	
 	}
+
 	private List<String> searchVegetablesByLetters(CharSequence charachters, Properties props) {
 		// TODO Auto-generated method stub
 
@@ -266,15 +272,23 @@ public class VegetablesEcomHomePageTest extends Configurations {
 
 		return displayedProducts;
 	}
+	
+	
+	// This method checks out from the homepage after completing the shopping of the vegetables
+	public void checkOut() {
+		
+		checkOutObject = new VegtablesEcomCheckOutOne();
+		driver.findElement(checkOutObject.checkOut()).click();
+		currentUrl = driver.getCurrentUrl();
+	}
+	
+	
 
 	@AfterTest
 	public void vegetablesEcomHomePage_settingsAfterTest() {
 		// This closes the opened web application and saves up the memory.
-				driver.close();
+		driver.close();
 
-		
 	}
-	
-	
 
 }

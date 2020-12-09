@@ -13,16 +13,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeTest;
 import resources.Configurations;
-import vegEcomSeleniumFramework.TopDeals;
+import vegEcomSeleniumFramework.VegetablesEcomTopDeals;
 
-public class TopDealsTest extends Configurations {
+public class VegetablesEcomTopDealsTest extends Configurations {
 	WebDriver driver;
 	Properties props = new Properties();
 	String location = "/home/saikrishna/Practical/selenium/SeleniumAutomationEndToEnd/end2endFramework/src/main/java/resources/centralData.properties";
-	private static TopDeals topdeal;
+	private static VegetablesEcomTopDeals topdeal;
 	private static List<WebElement> vegItems;
 	private String[] products = { "Toamto", "Rice", "Potato" };
-	private static final Logger logger = LogManager.getLogger(TopDealsTest.class.getName());
+	private static final Logger logger = LogManager.getLogger(VegetablesEcomTopDealsTest.class.getName());
 
 	@BeforeTest()
 	public void vegTopDeals_SettingsBeforeTest() throws IOException {
@@ -48,7 +48,7 @@ public class TopDealsTest extends Configurations {
 
 		driver.manage().window().maximize();
 
-		topdeal = new TopDeals(driver);
+		topdeal = new VegetablesEcomTopDeals(driver);
 
 		// Initialize a list for storing product prices
 

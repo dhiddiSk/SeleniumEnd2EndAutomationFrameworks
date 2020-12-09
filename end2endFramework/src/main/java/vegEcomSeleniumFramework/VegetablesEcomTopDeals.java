@@ -4,12 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class TopDeals {
+public class VegetablesEcomTopDeals {
 
 	private WebDriver driver;
 
 
-	public TopDeals(WebDriver driver) {
+	public VegetablesEcomTopDeals(WebDriver driver) {
 
 		this.driver = driver;
 	}

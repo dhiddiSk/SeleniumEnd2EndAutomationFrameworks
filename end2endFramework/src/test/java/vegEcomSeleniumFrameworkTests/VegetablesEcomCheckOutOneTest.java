@@ -1,30 +1,19 @@
 package vegEcomSeleniumFrameworkTests;
 
 import org.testng.annotations.Test;
-
-import com.beust.jcommander.Parameter;
-
-import vegEcomSeleniumFramework.CheckOut;
-
-import java.io.FileInputStream;
-import java.io.IOException;
+import vegEcomSeleniumFramework.VegtablesEcomCheckOutOne;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
 
-public class CheckOutTest {
+public class VegetablesEcomCheckOutOneTest {
 
 	Properties props = new Properties();
 	private String propertiesFilesLocation = "/home/saikrishna/Practical/selenium/SeleniumAutomationEndToEnd/end2endFramework/src/main/java/resources/centralData.properties";
@@ -32,62 +21,37 @@ public class CheckOutTest {
 	//private static Logger log;
 	
 	WebDriver driver;
-	CheckOut checkOut;
+	VegtablesEcomCheckOutOne checkOut;
 	WebDriverWait w;
+	private static Logger logger = LogManager.getLogger(VegetablesEcomCheckOutOneTest.class.getName());
 
-//	@BeforeTest()
-//	public void settingTestProperties() throws IOException {
-//
-//		FileInputStream fileInputStream = new FileInputStream(propertiesFilesLocation);
-//		props.load(fileInputStream);
-//
-//		if (props.getProperty("browser").equals("chrome")) {
-//
-//			driver = new ChromeDriver();
-//
-//			System.setProperty("webdriver.chrome.driver", props.getProperty("driverLocation"));
-//
-//		}
-//
-//		else if (props.getProperty("browser").equals("mozilla")) {
-//
-//			driver = new FirefoxDriver();
-//
-//			System.setProperty("webdriver.gecko.driver", props.getProperty("driverLocation"));
-//
-//		}
-//
-//		else if (props.getProperty("browser").equals("IE")) {
-//
-//			driver = new InternetExplorerDriver();
-//
-//			System.setProperty("webdriver.ie.driver", props.getProperty("driverLocation"));
-//
-//		}
-//		
-//		w = new WebDriverWait(driver, 5);
-//		
-//		//log = LogManager.getLogger(CheckOutTest.class);
-//
-//	}
 	
 	@Parameters({"promocode"})
 	@Test(timeOut = 10000)
-	public void cartTest(String code) {
+	public void vegetablesEcomCheckOutOneTest_promoCodeTest(String code) {
 		
 		driver.get(props.getProperty("cartUrl"));
+		logger.info("The property of driver is set to the given url: "+props.getProperty("cartUrl"));
+		logger.debug("The property of driver is set to the given url: "+props.getProperty("cartUrl"));
 		
 		System.out.println(props.getProperty("cartUrl"));
+				
+		checkOut = new VegtablesEcomCheckOutOne();
 		
-		//checkOut = new CheckOut(driver);
+		w = new WebDriverWait(driver, 3);
 		
-		checkOut = new CheckOut();
-		
+		// The webdriver waits until the promocode webelment is visible
 		w.until(ExpectedConditions.visibilityOfElementLocated(By.className("promoCode")));
 		
 		driver.findElement(checkOut.promoCode()).sendKeys(code);
 		
+		logger.info("promocode is applied");
+		
+		logger.debug("The applied promoCode is applied"+ code  );
+		
 		driver.findElement(checkOut.applyPromoCode()).click();
+		
+		logger.info("The apply promocode button is clicked");
 		
 		String style = driver.findElement(checkOut.verifyPromoApplicabilty()).getAttribute("style");
 		
@@ -95,18 +59,23 @@ public class CheckOutTest {
 			
 			String errorMessage = "The entered promoCode is invalid, please retry with correct one's";
 			
+			logger.debug("The entered promoCode "+code+"is invalid, please retry with correct one's");
+			
 		//	log.error(errorMessage);
 			
 			Assert.assertTrue(false);	
 			
 		}		
 		
-//		driver.findElement(checkOut.placeOrder()).click();
-//		
-//		String latestUrl = driver.getCurrentUrl();
-//		
-//		props.setProperty("cartTwoUrl", latestUrl);
 	}
 	
+	
+	@Test
+	public void vegetablesEcomCheckOutOneTest_placeOrderTest() {
+		
+		driver.findElement(checkOut.placeOrder()).click();
+		logger.info("The order is placed");
+		logger.debug("The webelement of placeorder is not valid");
+	}	
 
 }
