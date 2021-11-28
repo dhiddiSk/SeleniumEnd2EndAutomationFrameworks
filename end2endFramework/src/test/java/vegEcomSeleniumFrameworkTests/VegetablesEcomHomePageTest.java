@@ -27,7 +27,6 @@ public class VegetablesEcomHomePageTest extends Configurations {
 
 	WebDriver driver;
 	VegetablesEcomHomePage vegEcomHomeObject;
-	VegtablesEcomCheckOutOne checkOutObject;
 	WebDriverWait w;
 	Properties props = new Properties();
 	String location = "/home/saikrishna/Practical/selenium/SeleniumAutomationEndToEnd/end2endFramework/src/main/java/resources/centralData.properties";
@@ -146,26 +145,27 @@ public class VegetablesEcomHomePageTest extends Configurations {
 
 			if (driver.findElement(vegEcomHomeObject.cartItems()).isDisplayed()) {
 
-				List<WebElement> cartItemsWebElements = driver.findElements(vegEcomHomeObject.cartItem());
+				List<WebElement> cartItemsWebElements = driver.findElements(vegEcomHomeObject.cartItems());
 
 				// Now use an cartItems to store the product string and its position. Since all
 				// the products have the same remove tag, it's better to know the serial number
 				// of every product in cart
 				HashMap<String, Integer> cartItems = new HashMap<String, Integer>();
 
-				int itemSerialNumbersInCart = 0;
+				int itemSerialNumbersInCart = 1;
+				String[] produtNames;
 
 				if (cartItemsWebElements.size() > 0) {
 					for (WebElement element : cartItemsWebElements) {
-						itemSerialNumbersInCart += 1;
-
+						
 						String productName = element.findElement(vegEcomHomeObject.productName()).getText();
-
-						String[] produtNames;
-
 						produtNames = productName.split("-");
 						String name = produtNames[0].trim();
+						
+						//Here the motive is to save the positions of the items in the cart.
 						cartItems.put(name, itemSerialNumbersInCart);
+						
+						itemSerialNumbersInCart += 1;
 					}
 				}
 
@@ -178,6 +178,8 @@ public class VegetablesEcomHomePageTest extends Configurations {
 						int position = cartItems.get(itemToBeRemoved);
 
 						// System.out.println(position);
+						
+						// The below xpath is statically defined, if the original xpath in the website changes then it needs to be updated.
 
 						String cartItemsXpath = "//ul[@class ='cart-items']/li[pos]/a";
 
@@ -187,11 +189,11 @@ public class VegetablesEcomHomePageTest extends Configurations {
 
 						String replacement = Integer.toString(position);
 
-						String finalProssessed = cartItemsXpath.replace(target, replacement);
+						String finalProssessedElementToberemoved = cartItemsXpath.replace(target, replacement);
 
 						// System.out.println(finalProssessed);
 
-						removeElementXpaths.add(finalProssessed);
+						removeElementXpaths.add(finalProssessedElementToberemoved);
 
 					}
 
@@ -277,8 +279,8 @@ public class VegetablesEcomHomePageTest extends Configurations {
 	// This method checks out from the homepage after completing the shopping of the vegetables
 	public void checkOut() {
 		
-		checkOutObject = new VegtablesEcomCheckOutOne();
-		driver.findElement(checkOutObject.checkOut()).click();
+		vegEcomHomeObject = new VegetablesEcomHomePage();
+		driver.findElement(vegEcomHomeObject.checkOut()).click();
 		currentUrl = driver.getCurrentUrl();
 	}
 	

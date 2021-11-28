@@ -2,7 +2,7 @@ package vegEcomSeleniumFramework;
 
 import org.openqa.selenium.By;
 
-public class VegtablesEcomCheckOutOne extends VegEcomHomePage {
+public class VegtablesEcomCheckOutOne{
 
 	public VegtablesEcomCheckOutOne() {
 		// TODO Auto-generated constructor stub

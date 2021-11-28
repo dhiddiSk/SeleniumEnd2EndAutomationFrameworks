@@ -11,6 +11,10 @@ public class VegetablesEcomHomePage {
 		this.driver = driver;
 	}
 
+	public VegetablesEcomHomePage() {
+		// TODO Auto-generated constructor stub
+	}
+
 	// Returns the webElement of search bar of vegetables.
 	public By vegetablesEcomHomePage_search() {
 		return By.cssSelector("input[type ='search']");
@@ -56,6 +60,10 @@ public class VegetablesEcomHomePage {
 	
 	public By productName() {
 		return By.className("product-name");
+	}
+	
+	public By removeProduct() {
+		return By.className("product-remove");		
 	}
 
 	
